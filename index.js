@@ -8,10 +8,9 @@ let url = require("url");
 let fs = require("fs");
 let UUID = require("uuid-js");
 let generateHTML = null;
-let writeDataFile = null;
-let readDataFile = null;
 
 app.use(express.static("./public"));
+
 /*
  * Description: 读取网页文件，用于替换关键字，相当于简易模板
  * Params:
@@ -47,7 +46,7 @@ generateHTML = function (sessionID, req, res, fileName) {
  * writeData - 需要写入的JSON格式数据
  *
  */
-setJSONValue = function (fileName, uid, writeData) {
+let setJSONValue = function (fileName, uid, writeData) {
   let data = fs.readFileSync(fileName);
 
   let users = JSON.parse(data.toString());
@@ -123,7 +122,7 @@ app.get("/qrcode", function (req, res, next) {
       // 写入二维码内的网址，微信扫描后自动跳转
       let jumpURL = "https://www.maomin.club/qrcodelogin/scanned?uid=" + uid;
       // 生成二维码(size：图片大小， margin: 边框留白)
-      var img = qrcode.image(jumpURL, { size: 6, margin: 2 });
+      let img = qrcode.image(jumpURL, { size: 6, margin: 2 });
       res.writeHead(200, { "Content-Type": "image/png" });
       img.pipe(res);
     } else {
@@ -193,14 +192,14 @@ app.get("/confirmed", function (req, res) {
 
     if (status === "verified") {
       res.writeHead(200, { "Content-Type": "text/html" });
-      res.end("<h1'>登录成功!</h1>");
+      res.end("<h1 style='textAlign:center;'>登录成功!</h1>");
     } else {
       res.writeHead(200, { "Content-Type": "text/html" });
-      res.end("<h1>Canceled!</h1>");
+      res.end("<h1 style='textAlign:center;'>Canceled!</h1>");
     }
   } else {
     res.writeHead(414, { "Content-Type": "text/html" });
-    res.end("<h1>414 Request-URI Too Large</h1>");
+    res.end("<h1 style='textAlign:center;'>414 Request-URI Too Large</h1>");
   }
 });
 
@@ -233,10 +232,6 @@ app.get("/verified", function (req, res) {
   res.end(JSON.stringify(dataStatus));
 });
 
-// -----END SERVER CONFIGURATION-----
-
-// -----BEGIN START SERVER-----
-
 server.listen(4000);
 console.log(
   "Express server listening on port %d in %s mode",
@@ -244,4 +239,3 @@ console.log(
   app.settings.env
 );
 
-//-----EDULE START SERVER-----
