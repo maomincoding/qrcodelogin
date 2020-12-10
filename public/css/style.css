@@ -17,9 +17,11 @@ body{
   width: 280px;
   margin: 20px 5px;
 }
-
-.white{
+.confirmBox{
   background: #fff;
+}
+.tips{
+  margin-left: 2em;
 }
 .qrcode-bottom{
   display: block;
@@ -36,7 +38,7 @@ body{
 .line{
   display: block;
   height: 1px;
-  margin: 20px 0;
+  margin-bottom:15px;
   background-color: #ccc;
 }
 
@@ -47,6 +49,8 @@ body{
 }
 .tit{
   font-size: 1.5em;
+  margin:15px 0; 
+  text-align: center;
 }
 .info ul{
   display: block;
@@ -79,7 +83,9 @@ body{
 .confirm:hover{
   background-color: green;
 }
-
+.modebtn{
+  margin: 20px 0;
+}
 .cancel{
   display: block;
   height: 3em;
@@ -89,7 +95,6 @@ body{
   line-height: 3em;
   text-decoration: none;
   text-align: center;
-  border: 1px solid #aaa;
   border-radius: 5px;
   background-color: #f1f1f1
 }

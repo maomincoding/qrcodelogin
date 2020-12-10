@@ -6,39 +6,26 @@
   <title>登录</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="container white">
+<body style="background: #fff;">
+  <div class="confirmBox">
     <div class="info">
       <p class="tit">App</p>
       <div class="line"></div>
       <div class="message">
-        <p>即将登录你的账号，请确认是本人操作</p>
+        <p class="tips">即将登录你的账号，请确认是本人操作</p>
         <ul>
           <li>获取你的头像</li>
           <li>获取你的昵称</li>
           <li>使用你的账号登录应用</li>
         </ul>
-        <a class="confirm" href="confirmed?uid=SESSION_UID&operate=confirm">确认登录</a>
-        <a id="cancelBtn" class="cancel" href="#">取消登录</a>
+        <div class="modebtn">
+          <a class="confirm" href="confirmed?uid=SESSION_UID&operate=confirm">同意</a>
+          <a id="cancelBtn" class="cancel" href="#">拒绝</a>
+        </div>
       </div>
     </div>
   </div>
-
-  <script src="js/jquery-3.3.1.min.js"></script>
-  <script>
-    jQuery('#cancelBtn').click(()=>{
-      jQuery.ajax({
-        url: "confirmed?uid=SESSION_UID&operate=cancel",
-        dataType: "html",
-        success: function (){
-          // 微信内置浏览器退出
-          WeixinJSBridge.call('closeWindow');
-        }
-      });
-      
-    });
-  </script>
 </body>
 </html>
